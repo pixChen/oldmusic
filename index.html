@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>music</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/music.css">
+</head>
+<body>
+	<section id="demo">
+		<div class="demoLeft">
+			<div class="LeftFun">
+				<h2><a href="#">Music</a></h2>
+				<input type="text" class="search" title="搜出你想听的~" @keyup.enter='get' v-model='name' placeholder="搜出你想听的~">
+				<ul>
+					<li v-for='(item,index) in text'>
+						<p @click=Music(item.id) title="item.name">{{item.name}}</p>
+						<p>{{item.artists[0].name}}</p>
+						<p @click=play(item.mvid) v-if="item.mvid !== 0" class="mv">MV</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="demoRig">
+			<div class="RigFun">
+				<div id="lyric">
+					<h2>{{songs}}<p>{{composer}}</p></h2>				
+					<ul>
+						<li v-for='(item,index) in lyric' :class='{lyricthis:index == lyricThis}'>{{item}}</li>
+					</ul>
+				</div>
+				<h2><p v-show="comment.length !== 0">热门评论</p></h2>
+				<ul v-show="comment.length == 0" class="titUl">
+					<h2>提醒一下：</h2>
+					<li>
+						在左侧的搜索框中可以打出你想听的音乐，然后按下<p>回车 enter</p>即可。			
+					</li>
+					<li>
+						需要歌词的话，点下面的<p>封面图片</p>就好。（当然，是在有正在播放的情况下🙃）
+					</li>
+					<li>
+						在搜索过程中，可能会搜到无法正常播放的音乐，这是因为<p>版权问题</p>，小弟我也没有办法。（😭😭）
+					</li>
+					<li>
+						因为<p>音乐</p>和<p>MV</p>是两个独立的标签，当你想要从<p>正在播放的音乐</p>切换到<p>MV</p>时，请按下暂停，以免有不必要的影响。（抱歉...😅!）
+					</li>
+					<li>
+						<p>音乐</p>或者<p>MV</p>在播放完毕的时候不会自动进行下一首/部。（这……，算了，你打我吧🤡）
+					</li>
+					<li>
+						当前是<p>1.10</p>版本，依旧<p>没有写</p>兼容（😐），当前只兼容 <a href="https://www.google.cn/" target="_blank">Google</a>。
+					</li>
+					<li>
+						……
+					</li>
+					<li>
+						要是在使用过程中，您要是碰到了其他 <c>bug</c>或者有其他好的<p>建议</p> ，可以联系我QQ <a href="https://qm.qq.com/cgi-bin/qm/qr?k=EQmA-j8xGIdvYsKsO5XMIagQ4QIBTITa&noverify=0">54302596</a>，谢谢关照！（😝）
+					</li>
+				</ul>
+				<ul v-show="comment.length !== 0" class="ul">
+					<li v-for='(item,index) in comment'>
+						<div class="name">
+							<img :src="item.user.avatarUrl">
+							<p>{{item.user.nickname}}</p>
+						</div>
+						<div class="text">
+							<p>{{item.content}}</p>	
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="Rigaudio">
+				<div class="RigaudioLeft">
+					<img :src="musicSrc" :alt="musicSrc" v-show="musicSrc !== ''" :title="songs" @click='lyricFun'>
+				</div>
+				<div class="RigaudioRig">
+					<audio :src="music" class="audio" controls autoplay></audio>	
+				</div>	
+			</div>
+		</div>
+		<div id="videoFun" v-show="isShow" style="display:none;">
+			<span  @click='offplay'>×</span>
+			<video class='video' :src="playSrc" controls autoplay></video>
+		</div>
+		
+	</section>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript" src="js/music.js"></script>

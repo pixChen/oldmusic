@@ -1,0 +1,58 @@
+*{margin:0px;padding:0px;list-style:none;text-decoration:none;user-select:none;}
+html,body{height:100%;background:#FFFFFF;font-family:'微软雅黑 Light';color:#494949;}
+/*修改默认滚动条和滚动滑块样式*/
+::-webkit-scrollbar{background-color:transparent;width:6px;}
+::-webkit-scrollbar-thumb{background-color:#494949;border-radius:3px;}
+input{outline:none;font-family:'微软雅黑 Light';}
+audio{outline:none;}
+a{color:#494949;}
+
+
+#demo{width:100%;height:100%;overflow:hidden;}
+#demo > .demoLeft{float:left;width:320px;height:100%;padding:0px 10px;overflow:auto;}
+.LeftFun{width:100%;}
+.LeftFun > h2{margin:30px auto;text-align:center;}
+.search{width:84%;margin-left:5%;height:40px;padding:0px 3%;border-radius:5px;border:1.5px dotted #FDCB9E;font-size:14px;font-weight:bold;}
+.search:focus{border:1.5px solid #FDCB9E;}
+.LeftFun > ul{width:90%;margin:10px auto;}
+.LeftFun > ul > li{width:90%;height:45px;line-height:45px;font-size:14px;font-weight:bold;letter-spacing:1px;border-bottom:1px solid #E8E4E1;padding:0px 5%;overflow:hidden;}
+.LeftFun > ul > li > p{cursor:pointer;overflow:hidden;}
+.LeftFun > ul > li > p:active{color:#CCEABB;}
+.LeftFun > ul > li > p:nth-child(1){float:left;max-width:50%;white-space:nowrap;text-overflow:ellipsis;}
+.LeftFun > ul > li > p:nth-child(2){float:left;margin-left:10px;font-size:12px;max-width:40%;white-space:nowrap;text-overflow:ellipsis;}
+.LeftFun > ul > li > p:nth-child(3){float:right;text-align:right;max-width:10%;}
+.LeftFun > ul > li:hover{background:#CCEABB;}
+.active{background:#CCEABB;color:#FFFFFF;}
+
+#demo > .demoRig{float:right;width:calc(100% - 346px);height:calc(100% - 80px);overflow:auto;border-left:1px solid #E8E4E1;}
+.RigFun{width:100%;}
+.RigFun > #lyric{position:absolute;top:-100%;left:346px;width:520px;height:calc(100% - 80px);background-color:rgba(0,0,0,0.6);color:#E4E4E4;overflow:auto;transition:top .5s;scroll-behavior:smooth;}
+.RigFun > #lyric > h2{width:100%;text-align:center;margin:45px 0px;}
+.RigFun > #lyric > h2 > p{display:inline-block;font-size:14px;color:#E5E5E5;margin:0px 10px;}
+.RigFun > #lyric > ul{width:90%;padding-left:5.5%;padding-bottom:20px;font-weight:bold;margin:calc(30% + 80px) 0px;}
+.RigFun > #lyric > ul > li{width:100%;height:auto;line-height:45px;text-align:center;font-size:16px;transition:ease .3s;}
+.lyricthis{color:#FDCB9E;font-size:18px !important;}
+.lyric{top:0px !important;}
+.RigFun > h2{width:97%;padding:3% 3% 3% 0;text-align:right;}
+.RigFun > .titUl{width:90%;padding:5%;}
+.RigFun > .titUl > h2{margin-bottom:20px;}
+.RigFun > .titUl > li{width:95%;min-height:60px;margin-left:5%;line-height:60px;font-weight:bold;font-size:18px;}
+.RigFun > .titUl > li > p{display:inline-block;margin:0px 10px;padding:0px 10px; background-color:#E4E4E4;color:#FF847C;line-height:24px;border-radius:5px;}
+.RigFun > .titUl > li > a{margin:0px 10px;padding:0px 10px; background-color:#FC8210;color:#FFFFFF;line-height:24px;border-radius:5px;}
+.RigFun > .titUl > li > c{argin:0px 10px;padding:0px 10px; background-color:#F5A8A8;color:#FFFFFF;line-height:24px;border-radius:5px;}
+.RigFun > .ul{width:96%;padding:0px 2%;}
+.RigFun > .ul > li{width:calc(100% - 10px);min-height:125px;padding:5px;border-top:1px solid #E8E4E1;display:flex; flex-direction:row;}
+.RigFun > .ul > li > .name{width:100px;height:125px;}
+.RigFun > .ul > li > .text{width:calc(100% - 110px);padding:5px;min-height:125px;display:flex;justify-content:center;align-items:center;}
+.RigFun > .ul > li > .text > p{text-indent:2em;}
+.RigFun > .ul > li > .name > img{width:80px;height:80px;margin:10px;}
+.RigFun > .ul > li > .name > p{text-align:center;font-weight:bold;letter-spacing:1px;font-size:12px;max-width:100%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+.Rigaudio{position:fixed;bottom:0px;right:0px;width:calc(100% - 346px);height:60px;border-left:1px solid #E8E4E1;padding:10px 0px}
+.RigaudioLeft{float:left;width:80px;height:60px;}
+.RigaudioLeft > img{width:60px;height:60px;float:right;}
+.RigaudioRig{float:right;width:calc(100% - 80px);height:60px;}
+.audio{width:98%;margin-left:1%;margin-top:5px;}
+#videoFun{position:fixed;width:100%;height:100%;background-color:rgba(0,0,0,0.6);display:flex;justify-content:center;align-items:center;}
+#videoFun > span{width:100px;height:100px;color:#FFFFFF;position:absolute;top:0px;right:0px;font-size:48px;line-height:100px;text-align:center;cursor:pointer;font-weight:300;}
+#videoFun > video{width:60%;}
+.displayNone{display:none;}
