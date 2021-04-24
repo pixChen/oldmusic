@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+            transition: .15s all;
+        }
+        html,body{
+            font-family: "微软雅黑 Light";
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            background-color: antiquewhite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #1c1427;
+        }
+        .content{
+            width: 100vw;
+            max-width: 600px;
+            height: 100vh;
+        }
+        .flex_tabs{
+            width: 140px;
+            height: 40px;
+            border-bottom-right-radius: 15px;
+            display: flex;
+            justify-content: center;
+            box-shadow: 5px 5px 5px #EEE; 
+            overflow: hidden;
+        }
+        .flex_tabs > p{
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 5px;
+            box-sizing: border-box;
+            background-color: #FFF;
+        }
+        .flex_tabs > p:last-of-type{
+            padding-right: 5px;
+        }
+        .flex_tabs > p.active{
+            background-color: #1c1427;
+            color: #FFF;
+        }
+        .flex_tabs > p:active{
+            background-color: #1c1427;
+            color: #FFF;
+        }
+        .content_body{
+            width: 100%;
+            height: calc(100% - 40px);
+            padding: 20px 10px 10px 10px;
+            box-sizing: border-box;
+        }
+        .content_body > div{
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+        .content_body > div[status="true"]{
+            display: block;
+        }
+        .edit > .edit_input{
+            width: 100%;
+            height: 50px;
+            padding: 5px 0;
+            background-color: #FFF;
+            box-sizing: border-box;
+            box-shadow: 0px 1px 15px #ccc;
+            display: flex;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        .edit > .edit_input > input{
+            flex: 1;
+            padding: 0 15px;
+            box-sizing: border-box;
+            border: none;
+            outline: none;
+        }
+        .edit > .edit_input > span{
+            flex: 1;
+            max-width: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .edit > .edit_input > span::before{
+            content: "";
+            position: absolute;
+            top: 20%;
+            left: 0;
+            width: 2px;
+            height: 60%;
+            background-color: #666;
+            border-radius: 1px;
+        }
+        .edit > .edit_body{
+            width: 100%;
+            height: calc(100% - 60px);
+        }
+        .edit_body_content{
+            width: 100%;
+            height: calc(100% - 50px);
+            overflow: auto;
+        }
+        .edit_body_ul{
+            width: 100%;
+            height: 100%;
+        }
+        .edit_body_ul > li{
+            float: left;
+            width: auto;
+            padding: 10px 5px 10px 15px;
+            box-sizing: border-box;
+            background-color: #FFF;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            /* display: flex; */
+            border-radius: 5px;
+            box-shadow: 0 1px 5px #ccc;
+        }
+        .edit_body_ul > li > span:last-of-type{
+            display: inline-block;
+            padding: 0px 6px;
+            transform: scale(1.35);
+        }
+        .edit_body_p{
+            width: 100%;
+            padding: 10px 0;
+            box-sizing: border-box;
+        }
+        .random{
+            width: 100%;
+            height: 100%;
+        }
+        .random > .random_body{
+            height: calc(100% - 210px);
+            padding: 10px;
+            box-sizing: border-box;
+            position: relative;
+        }
+        /* .random > .random_body::before{
+            position: absolute;
+            content: "";
+            left: 2px;
+            top: 10px;
+            display: inline-block;
+            width: 2px;
+            height: calc(100% - 20px);
+            border-radius: 1px;
+            background-color: #1c1427;
+        }
+        .random > .random_body::after{
+            position: absolute;
+            content: "";
+            right: 2px;
+            top: 10px;
+            display: inline-block;
+            width: 2px;
+            height: calc(100% - 20px);
+            border-radius: 1px;
+            background-color: #1c1427;
+        } */
+        .random > .random_roll,.random_button,.random_reset{
+            height: 70px;
+            padding: 10px 0;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        .random .item_border{
+            width: 100%;
+            height: 100%;
+            border: 2px solid #1c1427;
+            border-radius: 5px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.15em;
+            box-shadow: 0 1px 5px #ccc;
+        }
+        .random_roll{
+            letter-spacing: 2px;
+        }
+        .random_content{
+            width: 100%;
+            height: 100%;
+        }
+        .random_content > li{
+            float: left;
+            background-color: #fff;
+            padding: 10px 15px;
+            border-radius: 3px;
+            box-shadow: 0 1px 5px #ccc;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        .random_button > .item_border{
+            background-color: #1c1427;
+            color: #FFF;
+        }
+        .random_reset > .item_border{
+            background-color: #fff;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="flex_tabs">
+            <p class="active">编辑</p>
+            <p>随机</p>
+        </div>
+        <div class="content_body">
+            <!-- 编辑 -->
+            <div class="edit" status="true">
+                <div class="edit_input">
+                    <input type="text" placeholder="静待填写内容" id="thatInput">
+                    <span id="add">添加</span>
+                </div>
+                <div class="edit_body">
+                    <div class="edit_body_content">
+                        <ul class="edit_body_ul"></ul>
+                    </div>
+                    <p class="edit_body_p">
+                        <span>数量：</span>
+                        <span id="num">0</span>
+                    </p>
+                </div>
+            </div>
+            <!-- 随机 -->
+            <div class="random" status="false">
+                <div class="random_roll">
+                    <div class="item_border">
+                        <span id="show_view"></span>
+                    </div>
+                </div>
+                <div class="random_body">
+                    <ul class="random_content">
+                        <li>
+                            <span>1</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="random_button">
+                    <div class="item_border" id="random">
+                        <span>不重复随机</span>
+                    </div>
+                </div>
+                <div class="random_reset" id="reset">
+                    <div class="item_border">
+                        <span>重置</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+
+    // tabs 切换
+    let flex_tabsAll = document.querySelectorAll('.flex_tabs > p');
+    let content_bodyAll = document.querySelectorAll('.content_body > div');
+
+    // tabs 事件
+    flex_tabsAll.forEach((item,index) => {
+        item.onclick = function(){
+            flex_tabsAll.forEach((itemValue,indexValue) => {
+                flex_tabsAll[indexValue].setAttribute('class',"")
+                content_bodyAll[indexValue].setAttribute('status',"false")
+            })
+            flex_tabsAll[index].setAttribute('class',"active")
+            content_bodyAll[index].setAttribute('status',"true")
+        }
+    })
+
+    // 编辑
+    let contentArr = [];   //  随机元素数组
+    let de_weight_arr = [];   //  去重随机元素数组
+    let contentIndex = 0;   //  id
+
+    // 添加
+    let thatInput = document.querySelector("#thatInput");   //  input
+    let add = document.querySelector("#add");   //  add
+    let edit_body_ul = document.querySelector(".edit_body_ul");   //  ul
+    let num = document.querySelector("#num");    //  num
+
+    add.addEventListener('click',() => {
+        let value = thatInput.value;
+        // value 为空时不执行任何操作
+        if(value == ""){
+            return false
+        }
+
+        // push
+        contentArr.push({
+            id: contentIndex,
+            value
+        })
+        de_weight_arr.push({
+            id: contentIndex,
+            value
+        })
+
+        // innerHTML
+        edit_body_ul.innerHTML += `
+            <li data-id="${contentIndex}">
+                <span>${value}</span>
+                <span onclick="itemDelete(${contentIndex})">×</span>
+            </li>
+        `;
+
+        // thatInput.value = ""
+        thatInput.value = ""
+        // thatInput
+        thatInput.focus()
+        // contentIndex++
+        contentIndex++;
+        
+        // num
+        num.innerHTML = contentArr.length;
+    });
+
+    // delete
+    function itemDelete(id){
+        // delete arr
+        contentArr = contentArr.filter(item =>{
+            return item.id !== Number(id)
+        })
+        de_weight_arr = de_weight_arr.filter(item =>{
+            return item.id !== Number(id)
+        })
+
+        // delete dom
+        let li_content = document.querySelectorAll('.edit_body_ul > li');
+        li_content.forEach(item => {
+            if(item.getAttribute('data-id') == String(id)){
+                edit_body_ul.removeChild(item)
+            }
+        })
+
+        // num
+        num.innerHTML = contentArr.length;
+    }
+
+
+    // 随机
+    let random_button = document.querySelector('#random');  //  随机按钮
+    let show_view = document.querySelector('#show_view');  //  展示块
+    let random_content = document.querySelector('.random_content');  //  ul
+    
+    let status = true;  //  true 随机   false 暂停
+    let setInter; //  setInterval
+    let setInter_status = false;    //  setInterval_status
+    let setInter_value = "";    //  setInter_value
+    let setInter_id = "";    //  setInter_id
+    random_button.onclick = function(){
+        if(status){
+            // 随机
+            console.log("de_weight_arr:",de_weight_arr)
+            // 没有元素
+            if(contentArr.length == 0){
+                alert("编辑页没有添加任何内容！")
+                return false
+            }
+            // 筛选完毕
+            if(de_weight_arr.length == 0){
+                alert("所有内容已展示在当前页");
+                show_view.innerHTML = ""
+                return false
+            }
+            // 随机
+            random_button.querySelector("span").innerHTML = "暂停";
+            if(de_weight_arr.length > 1){
+                setInter = setInterval(() => {
+                    let num = Math.floor(Math.random() * (de_weight_arr.length));
+                    let obj = de_weight_arr[num];
+                    setInter_value = obj.value;
+                    setInter_id = obj.id;
+                    show_view.innerHTML = setInter_value;
+                },30)
+                setInter_status = true;
+            }else{
+                let content_value = de_weight_arr[0].value
+                show_view.innerHTML = content_value;
+                random_content.innerHTML += `
+                    <li>
+                        <span>${content_value}</span>
+                    </li>
+                `;
+                de_weight_arr = [];
+                random_button.querySelector("span").innerHTML = "不重复随机";
+                setInter_status = false;
+                status = true;
+                return false;
+            }
+        }else{
+            // 暂停
+            random_button.querySelector("span").innerHTML = "不重复随机"
+
+            if(setInter_status){
+                clearInterval(setInter)
+                setInter_status = false;
+                de_weight_arr = de_weight_arr.filter(item => {
+                    return item.id !== Number(setInter_id)
+                })
+                random_content.innerHTML += `
+                    <li>
+                        <span>${setInter_value}</span>
+                    </li>
+                `;
+                setInter_id = ""
+                setInter_value = ""
+            }
+        }
+        
+        // ！status
+        status = !status;
+    }
+
+    // 重置
+    let reset = document.querySelector('#reset');  //  reset
+    reset.onclick = function(){
+        random_content.innerHTML = "";
+        de_weight_arr = [];
+        contentArr.forEach(item => {
+            de_weight_arr.push(item)
+        })
+        
+    }
+
+</script>
